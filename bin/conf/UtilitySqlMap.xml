@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="utility">
+	<select id="testQuery" resultClass="java.lang.Integer" >
+		SELECT COUNT(*) AS CNT
+		FROM TEST.INSTALLMENT
+	</select>
+	
+	<insert id="insertInstallment" parameterClass="msi.domain.Installment">
+  	 insert into test.installment (installment_content,updated_by,updated_time)
+  	 values (#installmentContent#, #updatedBy#, #updatedTime#)
+  	 <selectKey resultClass="int" keyProperty="installmentNumber">
+ 	 select last_insert_id() as installmentNumber
+  	 </selectKey>
+	</insert>
+	
+	<insert id="insertSubscriber" parameterClass="msi.domain.Subscriber">
+  	 insert into test.subscriber_subscription (user_id,updated_by,updated_time)
+  	 values (#userId#, #updatedBy#, CURRENT_TIMESTAMP)
+	</insert>
+	
+	<insert id="insertSubscription" parameterClass="msi.domain.Subscription">
+  	 insert into test.subscriber_subscription_installment
+  	   (user_id, installment_number, transmitted, updated_by,updated_time)
+  	 values (#userId#,#installmentNumber#,#transmitted#, #updatedBy#, #updatedTime#)
+	</insert>
+	
+	<insert id="bulkInsertSubscription" parameterClass="msi.domain.Subscription">
+        INSERT INTO test.subscriber_subscription_installment
+            (user_id, installment_number, transmitted, updated_by,updated_time)
+        VALUES
+        <iterate property="userIds" 
+                 conjunction=",">
+            (#userIds[]#, #installmentNumber#,#transmitted#, #updatedBy#, #updatedTime#)
+        </iterate>
+    </insert>
+</sqlMap>

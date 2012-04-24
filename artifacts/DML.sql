@@ -1,0 +1,3 @@
+CREATE TABLE installment (installment_number INT NOT NULL AUTO_INCREMENT, installment_content VARCHAR(255), updated_by VARCHAR(20), updated_time DATE, PRIMARY KEY(installment_number));
+CREATE TABLE subscriber_subscription (user_id VARCHAR(20), updated_by VARCHAR(20), updated_time DATE, PRIMARY KEY(user_id));
+CREATE TABLE subscriber_subscription_installment (user_id VARCHAR(20), installment_number INT, transmitted BOOLEAN, transmitted_time DATE, updated_by VARCHAR(20), updated_time DATE, PRIMARY KEY(user_id, installment_number));

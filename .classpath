@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="var" path="COMMON_LIBRARY/ibatis-2.3.4.726.jar"/>
+	<classpathentry kind="var" path="COMMON_LIBRARY/spring.jar"/>
+	<classpathentry kind="var" path="COMMON_LIBRARY/commons-lang-2.3.jar"/>
+	<classpathentry kind="var" path="COMMON_LIBRARY/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="mylib/mysql-connector-java-5.1.19-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="var" path="COMMON_LIBRARY/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
