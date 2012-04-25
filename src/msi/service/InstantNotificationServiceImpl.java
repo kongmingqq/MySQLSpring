@@ -102,6 +102,32 @@ public class InstantNotificationServiceImpl implements
 		System.out.println("\nbatchSubscribe ended");
 		System.out.println(new Date().getTime()-a.getTime());
 	}
+	
+	@Override
+	public void batchSubscribeWithCheck(List<String> userIds) throws InstantNotificationServiceException {
+		System.out.println("batchSubscribeWithCheck started");
+		Date a = new Date();
+		//int i=0;
+		for(String userId:userIds) {
+			//i++;
+			//if(i>3000) throw new Exception("failure");
+			try {
+				if(utilityDao.hasUserSubscribed(userId)==0) {
+					Subscriber subscriber = new Subscriber();
+					subscriber.setUserId(userId);
+					utilityDao.insertSubscriber(subscriber);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.err.println("\nerror when processing "+userId);
+				//e.printStackTrace();
+			} finally {
+				System.out.print("... "+userId);
+			}
+		}
+		System.out.println("\nbatchSubscribeWithCheck ended");
+		System.out.println(new Date().getTime()-a.getTime());
+	}
 
 	@Override
 	public void batchIssue(List<String> userIds, int installmentNumber) throws InstantNotificationServiceException {
@@ -138,6 +164,17 @@ public class InstantNotificationServiceImpl implements
 		
 		System.out.println("bulkIssue ended");
 		System.out.println(new Date().getTime()-a.getTime());
+	}
+
+	@Override
+	public boolean hasUserSubscribed(String userId)
+			throws InstantNotificationServiceException {
+		try {
+			int cnt = utilityDao.hasUserSubscribed(userId);
+			return cnt == 1;
+		} catch (Exception e) {
+			throw new InstantNotificationServiceException(e);
+		}
 	}
 
 }

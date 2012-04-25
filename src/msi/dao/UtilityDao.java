@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 //@Transactional(rollbackFor=Exception.class)
 public interface UtilityDao {
 	int testQuery() throws Exception;
+	int hasUserSubscribed(String userId) throws Exception;
 	int insertInstallment(Installment installment) throws Exception;
 	//@Transactional(propagation=Propagation.NESTED)
 	void insertSubscriber(Subscriber subscriber) throws Exception;

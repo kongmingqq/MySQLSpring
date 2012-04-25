@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor=InstantNotificationServiceException.class)
 public interface InstantNotificationService {
 	int testQuery() throws InstantNotificationServiceException;
-	
+	boolean hasUserSubscribed(String userId) throws InstantNotificationServiceException;
 	int publishContent(String message) throws InstantNotificationServiceException;
 	void subscribeUser(String userId) throws InstantNotificationServiceException;
 	void issueSubscription(String userId, int installmentNumber) throws InstantNotificationServiceException;
@@ -22,4 +22,6 @@ public interface InstantNotificationService {
 	void batchIssue(List<String> userIds, int installmentNumber) throws InstantNotificationServiceException;
 	
 	void bulkIssue(List<String> userIds, int installmentNumber) throws InstantNotificationServiceException;
+	void batchSubscribeWithCheck(List<String> userIds) throws InstantNotificationServiceException;
+	
 }

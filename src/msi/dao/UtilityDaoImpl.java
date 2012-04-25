@@ -40,5 +40,10 @@ public class UtilityDaoImpl extends SqlMapClientDaoSupport implements UtilityDao
 		getSqlMapClientTemplate().insert(utilityNamespace+"bulkInsertSubscription", subscription);
 	}
 
+	@Override
+	public int hasUserSubscribed(String userId) throws Exception {
+		return (Integer) getSqlMapClientTemplate().queryForObject(utilityNamespace+"hasUserSubscribed", userId);
+	}
+
 
 }

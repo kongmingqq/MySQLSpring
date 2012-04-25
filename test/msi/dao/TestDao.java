@@ -38,12 +38,16 @@ public class TestDao {
 		subscriber.setUserId("testUser1");
 		dao.insertSubscriber(subscriber);
 	}
-	@Test
+	//@Test
 	public void testInsertSubscrption() throws Exception {
 		Subscription subscription = new Subscription();
 		subscription.setUserId("testUser1");
 		subscription.setInstallmentNumber(5);
 		dao.insertSubscriberInstallment(subscription);
 	}
-
+	@Test
+	public void testHasSubscribed() throws Exception {
+		int a = dao.hasUserSubscribed("guid_1001");
+		System.out.println(a);
+	}
 }

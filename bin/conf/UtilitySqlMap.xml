@@ -6,6 +6,12 @@
 		FROM TEST.INSTALLMENT
 	</select>
 	
+	<select id="hasUserSubscribed" parameterClass="java.lang.String" resultClass="java.lang.Integer" >
+		SELECT COUNT(*)
+		FROM TEST.SUBSCRIBER_SUBSCRIPTION
+		WHERE USER_ID = #userId:VARCHAR#
+	</select>
+	
 	<insert id="insertInstallment" parameterClass="msi.domain.Installment">
   	 insert into test.installment (installment_content,updated_by,updated_time)
   	 values (#installmentContent#, #updatedBy#, #updatedTime#)
